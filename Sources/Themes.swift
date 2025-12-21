@@ -18,24 +18,25 @@ extension BaseTheme {
     var bodyFontSize: ResponsiveValues { .init(LengthUnit.px(18)) }
     var lineSpacing: LengthUnit { .em(1.5) }
     var headingLineSpacing: LengthUnit { .em(2) }
+
 }
 
-struct AutomataNight: BaseTheme {
+struct AdventNight: BaseTheme {
+
 	var font: Font = Font(
-        name: "Departure Mono",
-        source: "./../fonts/DepartureMono-Regular.woff2"
+        name: "Advent Sans",
+        source: "./../fonts/AdventSans-Logo.otf"
     )
 
     var headingFont: Font = Font(
-        name: "Annotation Mono",
-        source: "./../fonts/DepartureMono-Regular.woff2"
-
+        name: "Advent Sans",
+        source: "./../fonts/AdventSans-Logo.otf"
     )
 
     var monospaceFont: Font = Font(
-        name: "Annotation Mono",
-	    source: "./../fonts/DepartureMono-Regular.woff2"
-    )
+        name: "Advent Sans",
+        source: "./../fonts/AdventSans-Logo.otf"
+     )
 
     var colorScheme: ColorScheme = .dark
 
@@ -50,20 +51,21 @@ struct AutomataNight: BaseTheme {
     var syntaxHighlighterTheme: HighlighterTheme { .githubDark }
 }
 
-struct AutomataDay: BaseTheme {
+struct AdventDay: BaseTheme {
+
 	var font: Font = Font(
-        name: "Annotation Mono",
-        source: "./../fonts/DemiBold.woff2"
+        name: "Advent Sans",
+        source: "./../fonts/AdventSans-Logo.otf"
     )
 
     var headingFont: Font = Font(
-        name: "Annotation Mono",
-        source: "./../fonts/DemiBold.woff2"
+        name: "Advent Sans",
+        source: "./../fonts/AdventSans-Logo.otf"
     )
 
     var monospaceFont: Font = Font(
-         name: "Annotation Mono",
-         source: "./../fonts/Regular.woff2"
+        name: "Advent Sans",
+        source: "./../fonts/AdventSans-Logo.otf"
      )
 
     var colorScheme: ColorScheme = .light

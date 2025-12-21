@@ -20,8 +20,8 @@ struct LodgeSDA: Site {
     var url = URL(static: "https://lodgesda.github.io")
     var builtInIconsEnabled = true
 
-    var lightTheme: (any Theme)? = AutomataNight()
-    var darkTheme: (any Theme)? = AutomataNight()
+    var lightTheme: (any Theme)? = AdventDay()
+    var darkTheme: (any Theme)? = AdventNight()
     var author = "Maurice Elliott"
     var favicon: URL? { URL(static: "/images/logo.png") }
 
