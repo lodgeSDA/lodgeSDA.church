@@ -8,9 +8,11 @@ struct Home: StaticPage {
         Text("<br>")
 
         Link("Lodge Causeway Seventh Day Adventists", target: "/")
-            .foregroundStyle(.white)
+            .foregroundStyle(.secondary)
             .font(.title1)
 
         Text("<br>")
+
+        MainFooter()
     }
 }

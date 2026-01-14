@@ -21,36 +21,6 @@ extension BaseTheme {
 
 }
 
-struct AdventNight: BaseTheme {
-
-	var font: Font = Font(
-        name: "Advent Sans",
-        source: "./../fonts/AdventSans-Logo.otf"
-    )
-
-    var headingFont: Font = Font(
-        name: "Advent Sans",
-        source: "./../fonts/AdventSans-Logo.otf"
-    )
-
-    var monospaceFont: Font = Font(
-        name: "Advent Sans",
-        source: "./../fonts/AdventSans-Logo.otf"
-     )
-
-    var colorScheme: ColorScheme = .dark
-
-    var accent: Color { Color(hex: "#EBA123") } // yellow
-    var secondaryAccent: Color { Color(hex: "#6B997B") } // green
-    var secondary: Color { Color(hex: "#77D989") } // light-green
-    var background: Color { Color(hex: "#1A1313") } // black
-    var secondaryBackground: Color { Color(hex: "#30231E") } // light-black
-    var link: Color { Color(hex: "#7A97CC") } // blue
-    var hoveredLink: Color { Color(hex: "#8DCBCC") } // light-aqua
-
-    var syntaxHighlighterTheme: HighlighterTheme { .githubDark }
-}
-
 struct AdventDay: BaseTheme {
 
 	var font: Font = Font(
@@ -72,8 +42,8 @@ struct AdventDay: BaseTheme {
 
     var accent: Color { Color(hex: "#B67F21") } // yellow
     var secondaryAccent: Color { Color(hex: "#732127") } // light-red
-    var secondary: Color { Color(hex: "#52212C") } // red
-    var background: Color { Color(hex: "#DAD4BA") } //bright-white 
+    var secondary: Color { Color(hex: "#2E1B15") } // red
+    var background: Color { Color(hex: "#DAEEF2") } //bright-white 
     var secondaryBackground: Color { Color(hex: "#CDC8B0") } // white
     var link: Color { Color(hex: "#3A4A67") } // blue
     var hoveredLink: Color { Color(hex: "#2B797A") } // light-aqua

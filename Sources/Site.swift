@@ -21,7 +21,7 @@ struct LodgeSDA: Site {
     var builtInIconsEnabled = true
 
     var lightTheme: (any Theme)? = AdventDay()
-    var darkTheme: (any Theme)? = AdventNight()
+    var darkTheme: (any Theme)? = nil
     var author = "Maurice Elliott"
     var favicon: URL? { URL(static: "/images/logo.png") }
 
