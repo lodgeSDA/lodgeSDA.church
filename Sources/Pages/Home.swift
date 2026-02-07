@@ -7,7 +7,13 @@ struct Home: StaticPage {
     var body: some HTML {
         Text("<br>")
 
-        Link("Lodge Causeway Seventh Day Adventists", target: "/")
+        Image("/images/logo.png", description: "The Seventh Day Adventist Logo for Lodge Causeway Church.")
+        .frame(width: 250)
+        .margin(.bottom, 30)
+
+        Text("<br>")
+
+        Link("Lodge Causeway Church SDA", target: "/")
             .foregroundStyle(.secondary)
             .font(.title1)
 
