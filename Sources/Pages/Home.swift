@@ -12,12 +12,13 @@ struct Home: StaticPage {
         .margin(.bottom, 30)
 
         Text("<br>")
+        Section {
+            Link("Lodge Causeway Church SDA", target: "/")
+                .foregroundStyle(.secondary)
+                .font(.title1)
 
-        Link("Lodge Causeway Church SDA", target: "/")
-            .foregroundStyle(.secondary)
-            .font(.title1)
-
-        Text("<br>")
+            Text("<br>")
+        }.class("text-center")
 
         MainFooter()
     }

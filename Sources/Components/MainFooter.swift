@@ -18,6 +18,7 @@ struct MainFooter: HTML {
         .border(.white, width: 1, edges: .top)
 
       Link("South England Conference", target: "https://sec.adventist.uk/")
+        .horizontalAlignment(.center)
     }
   }
 }
