@@ -47,6 +47,4 @@ struct AdventDay: BaseTheme {
     var secondaryBackground: Color { Color(hex: "#CDC8B0") } // white
     var link: Color { Color(hex: "#3A4A67") } // blue
     var hoveredLink: Color { Color(hex: "#2B797A") } // light-aqua
-
-    var syntaxHighlighterTheme: HighlighterTheme { .solarizedLight }
 }
