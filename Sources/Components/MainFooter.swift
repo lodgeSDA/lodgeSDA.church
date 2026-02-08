@@ -5,13 +5,7 @@ struct MainFooter: HTML {
 
   var body: some HTML {
     Column {
-      Text {
-      }
-      .horizontalAlignment(.center)
-      .font(.body)
-      .fontWeight(.semibold)
-
-      Text("Lodge Causeway Seventh Day Adventist Church")
+      Text("SDA Church - Bristol Lodge Causeway")
         .horizontalAlignment(.center)
         .font(.body)
         .fontWeight(.light)
