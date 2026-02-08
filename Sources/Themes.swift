@@ -43,7 +43,7 @@ struct AdventDay: BaseTheme {
     var accent: Color { Color(hex: "#B67F21") } // yellow
     var secondaryAccent: Color { Color(hex: "#732127") } // light-red
     var secondary: Color { Color(hex: "#2E1B15") } // red
-    var background: Color { Color(hex: "#DAEEF2") } //bright-white 
+    var background: Color { Color(hex: "#F2DFDA") } //bright-white 
     var secondaryBackground: Color { Color(hex: "#CDC8B0") } // white
     var link: Color { Color(hex: "#3A4A67") } // blue
     var hoveredLink: Color { Color(hex: "#2B797A") } // light-aqua
