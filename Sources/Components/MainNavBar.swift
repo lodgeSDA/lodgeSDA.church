@@ -38,6 +38,7 @@ struct MainNavBar: HTML {
     
     private var logo: some InlineElement {
         Image("/images/logo.png", description: "The Seventh Day Adventist Logo for Lodge Causeway Church.")
+            .resizable()
             .frame(width: 250)
     }
 }
