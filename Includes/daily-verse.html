@@ -1,0 +1,109 @@
+<!-- Daily Bible Verse Widget -->
+<div id="daily-verse-container" class="card shadow-sm my-4">
+    <div class="card-body">
+        <h5 class="card-title">Verse of the Day</h5>
+        <div id="verse-content">
+            <div class="text-center py-3">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2 text-muted">Loading today's verse...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function() {
+    'use strict';
+    
+    // Calculate day of year (1-366)
+    function getDayOfYear() {
+        const now = new Date();
+        const start = new Date(now.getFullYear(), 0, 0);
+        const diff = now - start;
+        const oneDay = 1000 * 60 * 60 * 24;
+        return Math.floor(diff / oneDay);
+    }
+    
+    // Display error message
+    function showError(message) {
+        const container = document.getElementById('verse-content');
+        container.innerHTML = `
+            <div class="alert alert-warning" role="alert">
+                <i class="bi bi-exclamation-triangle"></i> ${message}
+            </div>
+        `;
+    }
+    
+    // Display the verse
+    function displayVerse(reference, content) {
+        const container = document.getElementById('verse-content');
+        container.innerHTML = `
+            <blockquote class="blockquote mb-0">
+                <p class="mb-3">"${content}"</p>
+                <footer class="blockquote-footer text-end">
+                    <cite title="Source">${reference}</cite> <span class="text-muted">(NIV)</span>
+                </footer>
+            </blockquote>
+        `;
+    }
+    
+    // Fetch verse content using passage ID
+    function fetchVerseContent(passageId) {
+        const bibleId = 'niv';
+        const url = `https://api.youversion.com/v1/bibles/${bibleId}/passages/${passageId}`;
+        
+        fetch(url, { method: 'GET' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch verse content');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.content && data.reference) {
+                    displayVerse(data.reference, data.content);
+                } else {
+                    showError('Verse content not available');
+                }
+            })
+            .catch(err => {
+                console.error('Error fetching verse content:', err);
+                showError('Unable to load verse content. Please try again later.');
+            });
+    }
+    
+    // Fetch verse of the day
+    function fetchVerseOfTheDay() {
+        const day = getDayOfYear();
+        const url = `https://api.youversion.com/v1/verse_of_the_days/${day}`;
+        
+        fetch(url, { method: 'GET' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch verse of the day');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.passage_id) {
+                    fetchVerseContent(data.passage_id);
+                } else {
+                    showError('Verse ID not available');
+                }
+            })
+            .catch(err => {
+                console.error('Error fetching verse of the day:', err);
+                showError('Unable to load today\'s verse. Please try again later.');
+            });
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fetchVerseOfTheDay);
+    } else {
+        fetchVerseOfTheDay();
+    }
+})();
+</script>
