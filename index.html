@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Maurice Elliott" />
+    <meta name="generator" content="Ignite v0.6.0" />
+    <title> – Home</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="/css/ignite-core.min.css" rel="stylesheet" />
+    <link href="https://lodgesda.church/" rel="canonical" />
+    <link href="/images/logo.png" rel="icon" />
+    <meta property="og:site_name" content="LodgeSDA" />
+    <meta property="og:title" content="" />
+    <meta name="twitter:title" content="" />
+    <meta property="og:url" content="https://lodgesda.church/" />
+    <meta name="twitter:domain" content="lodgesda.church" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:dnt" content="on" />
+  </head>
+  <body class="container">
+    <div class="ig-main-content">
+      <header>
+        <nav class="fixed-top navbar navbar-expand-md" data-bs-theme="light">
+          <div class="container flex-wrap flex-lg-nowrap">
+            <div class="me-2 me-md-auto">
+              <a href="/" class="d-inline-flex align-items-center navbar-brand"><img src="/images/logo.png" alt="The Seventh Day Adventist Logo for Lodge Causeway Church." class="img-fluid" style="width: 250px" /></a>
+            </div>
+            <button type="button" class="navbar-toggler btn" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+              <ul class="navbar-nav mb-2 mb-md-0 col justify-content-end">
+                <li class="nav-item"><a href="/about" class="nav-link text-nowrap">About</a></li>
+                <li class="nav-item"><a href="/contact" class="nav-link text-nowrap">Contact</a></li>
+                <li class="nav-item"><a href="/schedule" class="nav-link text-nowrap">Schedule</a></li>
+                <li class="nav-item"><a href="/gallery" class="nav-link text-nowrap">Gallery</a></li>
+                <li class="nav-item"><a href="/prayer-requests" class="nav-link text-nowrap">Prayer Requests</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div>
+        <p><br /></p>
+        <em>A Message from our Pastor: </em>
+        <p>Hello and welcome to lodge causeway church.<br /><strong>God</strong>is good, All the time,<br />and All the time,<strong>God</strong>is good!</p>
+        <!-- Daily Bible Verse Widget --> 
+        <div id="daily-verse-container" class="card shadow-sm my-4"> 
+          <div class="card-body"> 
+            <h5 class="card-title">Verse of the Day</h5> 
+            <div id="verse-content"> 
+              <div class="text-center py-3"> 
+                <div class="spinner-border text-primary" role="status"> 
+                  <span class="visually-hidden">Loading...</span> 
+                </div> 
+                <p class="mt-2 text-muted">Loading today's verse...</p> 
+              </div> 
+            </div> 
+          </div> 
+        </div> 
+        <script>
+(function() {
+    'use strict';
+    
+    // Calculate day of year (1-366)
+    function getDayOfYear() {
+        const now = new Date();
+        const start = new Date(now.getFullYear(), 0, 0);
+        const diff = now - start;
+        const oneDay = 1000 * 60 * 60 * 24;
+        return Math.floor(diff / oneDay);
+    }
+    
+    // Display error message
+    function showError(message) {
+        const container = document.getElementById('verse-content');
+        container.innerHTML = `
+            <div class="alert alert-warning" role="alert">
+                <i class="bi bi-exclamation-triangle"></i> ${message}
+            </div>
+        `;
+    }
+    
+    // Display the verse
+    function displayVerse(reference, content) {
+        const container = document.getElementById('verse-content');
+        container.innerHTML = `
+            <blockquote class="blockquote mb-0">
+                <p class="mb-3">"${content}"</p>
+                <footer class="blockquote-footer text-end">
+                    <cite title="Source">${reference}</cite> <span class="text-muted">(NIV)</span>
+                </footer>
+            </blockquote>
+        `;
+    }
+    
+    // Fetch verse content using passage ID
+    function fetchVerseContent(passageId) {
+        const bibleId = 'niv';
+        const url = `https://api.youversion.com/v1/bibles/${bibleId}/passages/${passageId}`;
+        
+        fetch(url, { method: 'GET' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch verse content');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.content && data.reference) {
+                    displayVerse(data.reference, data.content);
+                } else {
+                    showError('Verse content not available');
+                }
+            })
+            .catch(err => {
+                console.error('Error fetching verse content:', err);
+                showError('Unable to load verse content. Please try again later.');
+            });
+    }
+    
+    // Fetch verse of the day
+    function fetchVerseOfTheDay() {
+        const day = getDayOfYear();
+        const url = `https://api.youversion.com/v1/verse_of_the_days/${day}`;
+        
+        fetch(url, { method: 'GET' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch verse of the day');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.passage_id) {
+                    fetchVerseContent(data.passage_id);
+                } else {
+                    showError('Verse ID not available');
+                }
+            })
+            .catch(err => {
+                console.error('Error fetching verse of the day:', err);
+                showError('Unable to load today\'s verse. Please try again later.');
+            });
+    }
+    
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fetchVerseOfTheDay);
+    } else {
+        fetchVerseOfTheDay();
+    }
+})();
+</script> 
+      </div>
+      <p class="text-center" style="font-weight: 300">SDA Church - Bristol Lodge Causeway</p>
+      <a href="https://sec.adventist.uk/" class="text-center" style="display: block; font-weight: 100; text-decoration: none">South England Conference</a>
+      <a href="https://www.github.com/lodgeSDA/LodgeSDA.church" class="text-center" style="display: block; font-weight: 100; text-decoration: none">Github</a>
+    </div>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/ignite-core.js"></script>
+  </body>
+</html>
