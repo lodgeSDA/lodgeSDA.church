@@ -4,56 +4,35 @@
 
 <style>
 #sabbath-sunset-widget {
-  padding: 20px;
-  border-radius: 8px;
-  background: #f8f9fa;
-  border-left: 4px solid #0066cc;
+  text-align: center;
+  margin: 2rem 0;
 }
 
 .sunset-loading {
-  color: #666;
   font-style: italic;
+  opacity: 0.7;
 }
 
-.sunset-content h3 {
-  margin-top: 0;
-  color: #333;
-  font-size: 1.2em;
+.sunset-content h4 {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .sunset-times {
-  display: flex;
-  gap: 20px;
-  margin-top: 15px;
+  line-height: 1.8;
 }
 
 .sunset-day {
-  flex: 1;
-}
-
-.sunset-day .day-name {
-  font-weight: bold;
-  color: #0066cc;
-  margin-bottom: 5px;
-}
-
-.sunset-day .date {
-  font-size: 0.9em;
-  color: #666;
-  margin-bottom: 3px;
+  margin: 0.25rem 0;
 }
 
 .sunset-day .time {
-  font-size: 1.3em;
-  color: #333;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .sunset-error {
-  color: #d9534f;
-  padding: 10px;
-  background: #f8d7da;
-  border-radius: 4px;
+  font-style: italic;
+  opacity: 0.7;
 }
 </style>
 
@@ -126,6 +105,15 @@
     return `${displayHours}:${minutes} ${period}`;
   }
   
+  function formatDateWithSuffix(date) {
+    const day = date.getDate();
+    const suffix = ['th', 'st', 'nd', 'rd'];
+    const v = day % 100;
+    const suffixIndex = (v - 20) % 10 || v;
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    return `${months[date.getMonth()]} ${day}${suffix[suffixIndex] || suffix[0]}`;
+  }
+  
   async function loadSunsetTimes() {
     try {
       const friday = getNextFriday();
@@ -140,18 +128,10 @@
       const widget = document.getElementById('sabbath-sunset-widget');
       widget.innerHTML = `
         <div class="sunset-content">
-          <h3>Sabbath Sunset Times</h3>
+          <h4>Sabbath Sunset:</h4>
           <div class="sunset-times">
-            <div class="sunset-day">
-              <div class="day-name">Friday</div>
-              <div class="date">${formatDate(friday)}</div>
-              <div class="time">${fridaySunset}</div>
-            </div>
-            <div class="sunset-day">
-              <div class="day-name">Saturday</div>
-              <div class="date">${formatDate(saturday)}</div>
-              <div class="time">${saturdaySunset}</div>
-            </div>
+            <div class="sunset-day">Friday ${formatDateWithSuffix(friday)} <span class="time">${fridaySunset}</span></div>
+            <div class="sunset-day">Saturday ${formatDateWithSuffix(saturday)} <span class="time">${saturdaySunset}</span></div>
           </div>
         </div>
       `;
@@ -160,7 +140,7 @@
       const widget = document.getElementById('sabbath-sunset-widget');
       widget.innerHTML = `
         <div class="sunset-error">
-          Unable to load sunset times. Please try again later.
+          Unable to load sunset times.
         </div>
       `;
     }
