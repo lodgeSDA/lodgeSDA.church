@@ -24,6 +24,7 @@ struct Home: StaticPage {
             .margin(.top, 80)
             .margin(.bottom, 80)
         }
+        Include("sabbath-sunset.html")
         DailyVerse()
         MainFooter()
     }
