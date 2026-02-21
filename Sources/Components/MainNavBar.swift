@@ -4,22 +4,22 @@ import Ignite
 enum NavOption: String, CaseIterable {
     case about = "About"
     case contact = "Contact"
-    case schedule = "Schedule"
-    case gallery = "Gallery"
-    case prayerRequests = "Prayer Requests"
+    case events = "Events"
+    case media = "Media"
+    case ministries = "Ministries"
     
-    var path: String {
+    @MainActor var path: any StaticPage {
         switch self {
         case .about:
-            return "/about"
+            return About()
         case .contact:
-            return "/contact"
-        case .schedule:
-            return "/schedule"
-        case .gallery:
-            return "/gallery"
-        case .prayerRequests:
-            return "/prayer-requests"
+            return Contact()
+        case .events:
+            return Events()
+        case .media:
+            return Media()
+        case .ministries:
+            return Ministries()
         }
     }
 }

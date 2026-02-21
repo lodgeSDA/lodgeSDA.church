@@ -4,7 +4,9 @@ import Ignite
 struct MainLayout: Layout {
     var body: some Document {
         Body {
+            MainNavBar()
             content
+            MainFooter()
         }
     }
 }
