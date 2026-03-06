@@ -31,4 +31,12 @@ struct LodgeSDA: Site {
     var articlePages: [any ArticlePage] {
         ArticleLayout()
     }
+
+    var staticPages: [any StaticPage] {
+        About()
+        Contact()
+        Events()
+        Media()
+        Ministries()
+    }
 }
