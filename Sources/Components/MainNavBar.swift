@@ -34,6 +34,7 @@ struct MainNavBar: HTML {
         .navigationItemAlignment(.trailing)
         .navigationBarStyle(.light)
         .position(.fixedTop)
+        .background(Color(hex: "#F2DFDA"))
     }
     
     private var logo: some InlineElement {
