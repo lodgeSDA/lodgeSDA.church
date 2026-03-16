@@ -15,7 +15,7 @@ struct About: StaticPage {
 
             Carousel {
                 Slide(background: "/images/des.jpg") {
-                    Text("Des Miles")
+                    Text("Placeholder")
                         .font(.title2)
                     
                     Text("Elder")
