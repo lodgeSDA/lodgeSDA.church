@@ -14,7 +14,7 @@ struct About: StaticPage {
                 .linkStyle(.button)
 
             Carousel {
-                Slide(background: "/images/photos/des.jpg") {
+                Slide(background: "/images/des.jpg") {
                     Text("Des Miles")
                         .font(.title2)
                     
