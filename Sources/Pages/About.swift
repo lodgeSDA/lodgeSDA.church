@@ -5,12 +5,27 @@ struct About: StaticPage {
     var title = ""
 
     var body: some HTML {
-        MainNavBar()
         Section {
-            Text("<br>") 
-            .margin(.top, 80)
-            .margin(.bottom, 80)
+            Text(markdown: """
+                ### Mission
+                    As Seventh-day Adventists, our mission drives everything we do. Rooted in Christ’s love and the teachings of the Bible, we are committed to serving others, transforming lives, and building communities of hope. Through education, humanitarian work, health initiatives, and spiritual guidance, we aim to inspire faith and create lasting impact in the lives we touch—both locally and globally.
+            """)
+            Link("Tithes and Donations", target: "https://sec.adventist.uk/giving/tithes-offerings-and-donations")
+                .linkStyle(.button)
+
+            Carousel {
+                Slide(background: "/images/photos/des.jpg") {
+                    Text("Des Miles")
+                        .font(.title2)
+                    
+                    Text("Elder")
+                        .font(.body)
+                    
+                    Link("Twitter Account", target: "https://youtu.be/dQw4w9WgXcQ?si=z8jh_MCltN5ishev")
+                        .linkStyle(.button)
+
+                }.backgroundOpacity(0.5)
+            }
         }
-        MainFooter()
     }
 }
