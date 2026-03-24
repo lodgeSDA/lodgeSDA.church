@@ -5,8 +5,10 @@ struct Home: StaticPage {
     var title = ""
 
     var body: some HTML {
-        PastorMessage()
+        WelcomeHero()
+        ServiceTimes()
         Include("sabbath-sunset.html")
+        PastorMessage()
         DailyVerse()
     }
 }

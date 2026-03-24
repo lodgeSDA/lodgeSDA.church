@@ -5,10 +5,33 @@ struct MainFooter: HTML {
 
   var body: some HTML {
     Section {
-      Text("SDA Church - Bristol Lodge Causeway")
+      Divider()
+        .margin(.bottom, 30)
+
+      Text("Lodge Causeway SDA Church — Bristol, UK")
         .horizontalAlignment(.center)
         .font(.body)
         .fontWeight(.light)
+
+      // TODO: Replace with actual church address
+      Text("Lodge Causeway, Bristol, BS16 3RD")
+        .horizontalAlignment(.center)
+        .font(.body)
+        .fontWeight(.ultraLight)
+        .foregroundStyle(.secondary)
+        .margin(.bottom, 15)
+
+      Section {
+        // TODO: Replace with actual Facebook page URL
+        Link(Image(systemName: "facebook", description: "Facebook"), target: "https://www.facebook.com/YOUR_PAGE")
+          .margin(.horizontal, 10)
+
+        // TODO: Replace with actual Instagram page URL
+        Link(Image(systemName: "instagram", description: "Instagram"), target: "https://www.instagram.com/YOUR_PAGE")
+          .margin(.horizontal, 10)
+      }
+      .horizontalAlignment(.center)
+      .margin(.bottom, 15)
 
       Link("South England Conference", target: "https://sec.adventist.uk/")
         .horizontalAlignment(.center)
@@ -23,5 +46,6 @@ struct MainFooter: HTML {
         .textDecoration(.none)
     }
     .margin(.top, 80)
+    .margin(.bottom, 40)
   }
 }
